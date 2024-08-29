@@ -2,6 +2,7 @@
 using DemoVerificationOTP.Dtos.Common;
 using DemoVerificationOTP.Dtos.Student;
 using DemoVerificationOTP.Entities;
+using DemoVerificationOTP.Exceptions;
 using DemoVerificationOTP.Services.Interfaces;
 using System.Data.SqlTypes;
 using System.Security.Cryptography;
@@ -24,7 +25,7 @@ namespace DemoVerificationOTP.Services.Implements
             var existStudent = _dbContext.Students.FirstOrDefault(stu => stu.Email == input.Email);
             if (existStudent != null)
             {
-                throw new Exception("Email đăng ký đã tồn tại.");
+                throw new UserFriendlyException("Email đăng ký đã tồn tại.");
             }
             else
             {
@@ -62,7 +63,7 @@ namespace DemoVerificationOTP.Services.Implements
                 _dbContext.SaveChanges();
             } else
             {
-                throw new Exception($"Không tồn tại sinh viên có Id: {input.Id}");
+                throw new UserFriendlyException($"Không tồn tại sinh viên có Id: {input.Id}");
             };
         }
 
@@ -103,7 +104,7 @@ namespace DemoVerificationOTP.Services.Implements
             }
             else
             {
-                throw new Exception($"Không tồn tại sinh viên có Id: {id}");
+                throw new UserFriendlyException($"Không tồn tại sinh viên có Id: {id}");
             }
         }
 
@@ -123,7 +124,7 @@ namespace DemoVerificationOTP.Services.Implements
             }
             else
             {
-                throw new Exception($"Không tồn tại sinh viên có Id: {input.Id}");
+                throw new UserFriendlyException($"Không tồn tại sinh viên có Id: {input.Id}");
             }
         }
     }

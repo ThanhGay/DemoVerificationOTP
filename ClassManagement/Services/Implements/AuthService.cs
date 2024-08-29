@@ -1,5 +1,6 @@
 ﻿using DemoVerificationOTP.DbContexts;
 using DemoVerificationOTP.Dtos.FormLogin;
+using DemoVerificationOTP.Exceptions;
 using DemoVerificationOTP.Services.Interfaces;
 using System.Security.Cryptography;
 using System.Text;
@@ -31,7 +32,7 @@ namespace DemoVerificationOTP.Services.Implements
             }
             else
             {
-                throw new Exception("Mật khẩu không chính xác.");
+                throw new UserFriendlyException("Mật khẩu không chính xác.");
             }
         }
         
@@ -53,9 +54,9 @@ namespace DemoVerificationOTP.Services.Implements
                     existAccount.OTP = null;
                     _dbContext.SaveChanges();
                     wrongOTP = 0;
-                    throw new Exception("Sai quá 5 lần. Vui lòng thử lại trong giây lát");
+                    throw new UserFriendlyException("Sai quá 5 lần. Vui lòng thử lại trong giây lát");
                 }
-                throw new Exception($"OTP không chính xác. Còn {6 - wrongOTP} lần.");
+                throw new UserFriendlyException($"OTP không chính xác. Còn {6 - wrongOTP} lần.");
             }
         }
 
@@ -69,6 +70,7 @@ namespace DemoVerificationOTP.Services.Implements
                 keySize);
             return Convert.ToHexString(hash);
         }
+
         public bool VerifyPassword(int id, string password)
         {
             var student = _baseService.FindStudentById(id);

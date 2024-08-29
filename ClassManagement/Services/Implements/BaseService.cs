@@ -1,5 +1,6 @@
 ﻿using DemoVerificationOTP.DbContexts;
 using DemoVerificationOTP.Entities;
+using DemoVerificationOTP.Exceptions;
 using DemoVerificationOTP.Services.Interfaces;
 
 namespace DemoVerificationOTP.Services.Implements
@@ -21,7 +22,7 @@ namespace DemoVerificationOTP.Services.Implements
 
             if (existStudent == null)
             {
-                throw new Exception($"Không tìm thấy sinh viên có Id: {id}");
+                throw new UserFriendlyException($"Không tìm thấy sinh viên có Id: {id}");
             }
             return existStudent;
             
@@ -33,7 +34,7 @@ namespace DemoVerificationOTP.Services.Implements
 
             if (existStudent == null)
             {
-                throw new Exception($"Không tìm thấy sinh viên có Email: {email}");
+                throw new UserFriendlyException($"Không tìm thấy sinh viên có Email: {email}");
             }
             return existStudent;
 
@@ -49,7 +50,7 @@ namespace DemoVerificationOTP.Services.Implements
                 int otpNum = rd.Next(100000, 999999);
                 string otpStr = otpNum.ToString();
 
-                _notiService.SendMail(student.Email, otpStr);
+                _notiService.SendMail(student.Email, "Mã OTP của bạn là:" + otpStr);
 
                 student.OTP = otpStr;
                 _context.SaveChanges();
