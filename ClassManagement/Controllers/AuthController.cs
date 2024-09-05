@@ -35,8 +35,7 @@ namespace DemoVerificationOTP.Controllers
         {
             try
             {
-                _authService.LoginWithOtp(input);
-                return Ok("Thành công");
+                return Ok(_authService.LoginWithOtp(input));
             }
             catch (Exception ex)
             {
@@ -44,7 +43,5 @@ namespace DemoVerificationOTP.Controllers
             }
 
         }
-
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DemoVerificationOTP.DbContexts;
 using DemoVerificationOTP.Dtos.FormLogin;
+using DemoVerificationOTP.Entities;
 using DemoVerificationOTP.Exceptions;
 using DemoVerificationOTP.Services.Interfaces;
 using System.Security.Cryptography;
@@ -36,7 +37,7 @@ namespace DemoVerificationOTP.Services.Implements
             }
         }
         
-        public void LoginWithOtp(LoginWithOTPDto input)
+        public Student LoginWithOtp(LoginWithOTPDto input)
         {
             var existAccount = _baseService.FindStudentByEmail(input.Email);
             var trueOtp = _baseService.VerifyOtp(existAccount.Id, input.Otp);
@@ -45,6 +46,7 @@ namespace DemoVerificationOTP.Services.Implements
                 existAccount.OTP = null;
                 _dbContext.SaveChanges();
                 wrongOTP = 0;
+                return existAccount;
             } 
             else
             {

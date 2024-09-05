@@ -18,6 +18,13 @@ namespace DemoVerificationOTP
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("MyCors", policy =>
+                {
+                    policy.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+                });
+            });
 
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IStudentService, StudentService>();
@@ -38,7 +45,7 @@ namespace DemoVerificationOTP
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("MyCors");
             app.UseAuthorization();
 
 
