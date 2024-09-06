@@ -13,7 +13,7 @@ namespace DemoVerificationOTP.Services.Implements
         private readonly ApplicationDbContext _dbContext;
         private readonly IBaseService _baseService;
 
-        private int wrongOTP = 0;
+        private static int wrongOTP = 0;
         private readonly int keySize = 64;
         private readonly int iterations = 350000;
         private readonly HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;

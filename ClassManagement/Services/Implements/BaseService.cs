@@ -50,7 +50,7 @@ namespace DemoVerificationOTP.Services.Implements
                 int otpNum = rd.Next(100000, 999999);
                 string otpStr = otpNum.ToString();
 
-                _notiService.SendMail(student.Email, "Mã OTP của bạn là:" + otpStr);
+                _notiService.SendMail(student.Email, "Mã OTP của bạn là: " + otpStr);
 
                 student.OTP = otpStr;
                 _context.SaveChanges();
