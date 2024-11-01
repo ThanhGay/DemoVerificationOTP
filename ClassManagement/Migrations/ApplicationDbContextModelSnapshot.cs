@@ -34,8 +34,8 @@ namespace DemoVerificationOTP.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateOnly>("CreateAt")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -56,8 +56,8 @@ namespace DemoVerificationOTP.Migrations
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<DateOnly>("UpdateAt")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("UpdateAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
