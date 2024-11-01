@@ -18,7 +18,9 @@ namespace DemoVerificationOTP.Services.Implements
         /// senderPassword không có khoảng trắng
         /// 
         /// </summary>
-        /// 
+        /// ví dụ
+        /// senderEmail = "phoducthanh@gmail.com"
+        /// senderPassword = "jnncnisknewjeptc"
         /// <param name="senderEmail">Email người gửi</param>
         /// <param name="senderPassword">Mật khẩu ứng dụng - Không phải mật khẩu truy cập Email</param>
         /// 

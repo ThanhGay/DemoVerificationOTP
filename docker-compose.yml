@@ -1,0 +1,6 @@
+services:
+  demoverificationotp:
+    image: ${DOCKER_REGISTRY-}demoverificationotp
+    build:
+      context: .
+      dockerfile: ClassManagement/Dockerfile

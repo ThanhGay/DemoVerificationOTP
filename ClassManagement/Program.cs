@@ -47,6 +47,7 @@ namespace DemoVerificationOTP
             app.UseHttpsRedirection();
             app.UseCors("MyCors");
             app.UseAuthorization();
+            app.UseAuthentication();
 
 
             app.MapControllers();
